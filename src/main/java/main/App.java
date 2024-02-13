@@ -77,6 +77,7 @@ public class App
                     String parentWord = wordQueue.remove();
                     String childWord = wordQueue.peek();
 
+
                     if (wordTreeMap.isEmpty()) {
                         wordTreeParent = new WordTree(true, parentWord);
                         wordTreeChild = new WordTree(false, childWord);
