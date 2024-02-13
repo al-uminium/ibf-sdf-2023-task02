@@ -18,23 +18,6 @@ import java.util.Set;
 public class App 
 {
     public static void main( String[] args ) throws IOException {
-        // For testing
-        // WordTree test01 = new WordTree(true, "test");
-        // WordTree test02 = new WordTree(false, "not test");
-        // WordTree test03 = new WordTree(false, "this is a test");
-
-        // test01.addChildrenNodes(test02);
-        // test01.addChildrenNodes(test03);
-
-        // test02.addCount();
-        // test02.addCount();
-
-        // WordTree newtest = getWordTree(test01.getChildrenNodes(), "not test");
-        // System.out.println(newtest.toString());
-        // newtest = getWordTree(test01.getChildrenNodes(), "this is a test");
-        // System.out.println(newtest.toString());
-        // System.out.println(test01.toString());
-
         // initiating folder
         File folder = null;
         File[] listOfFiles = null;
@@ -43,20 +26,20 @@ public class App
          try {
             folder = new File(args[0]);
             listOfFiles = folder.listFiles();
-
         } catch (Exception e) {
-            // TODO: handle exception
             System.out.println("Directory not given.");
         }
 
         // going through the folder. 
         for (File file: listOfFiles) {
             if (file.isFile()) {
+                System.out.println("\n");
+                System.out.println("-------------------------------------------------------------------------------------");
                 System.out.println("File: " + file.getName());
+                System.out.println("-------------------------------------------------------------------------------------");
                 String filePath = args[0] + File.separator + file.getName();
                 String text = getTextFromFile(filePath);
                 Map<String, WordTree> wordTreeMap = parseString(text);
-                System.out.println("-------------------------------------------------------------------------------------");
                 for (WordTree wordTree: wordTreeMap.values()) {
                     System.out.println(wordTree.getWord());
                     for (WordTree childWord: wordTree.getChildrenNodes().values()) {
@@ -131,7 +114,6 @@ public class App
                 break;
             }
         }
-
         scan.close();
 
         return wordTreeMap;
