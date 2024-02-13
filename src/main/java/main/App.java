@@ -3,6 +3,7 @@ package main;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -63,7 +64,7 @@ public class App
 
         Queue<String> wordQueue = new LinkedList<>(); 
         Scanner scan = new Scanner(str);
-        Map<String, WordTree> wordTreeMap = new HashMap<>(); 
+        Map<String, WordTree> wordTreeMap = new LinkedHashMap<>(); 
         String word = "";
         
         while (true) {
@@ -78,26 +79,19 @@ public class App
                     String childWord = wordQueue.peek();
 
 
-                    if (wordTreeMap.isEmpty()) {
+                    if (wordTreeMap.isEmpty() || !wordTreeMap.containsKey(parentWord)) {
                         wordTreeParent = new WordTree(true, parentWord);
                         wordTreeChild = new WordTree(false, childWord);
                         wordTreeParent.addChildrenNode(childWord, wordTreeChild);
                         wordTreeMap.put(parentWord, wordTreeParent);
                     } else {
-                        if (wordTreeMap.containsKey(parentWord)) {
-                            wordTreeParent = wordTreeMap.get(parentWord);
-                            if (wordTreeParent.containsChildNode(childWord)) {
-                                wordTreeChild = wordTreeParent.getChildrenNode(childWord);
-                                wordTreeChild.addCount();
-                            } else {
-                                wordTreeChild = new WordTree(false, childWord);
-                                wordTreeParent.addChildrenNode(childWord, wordTreeChild);
-                            }
+                        wordTreeParent = wordTreeMap.get(parentWord);
+                        if (wordTreeParent.containsChildNode(childWord)) {
+                            wordTreeChild = wordTreeParent.getChildrenNode(childWord);
+                            wordTreeChild.addCount();
                         } else {
-                            wordTreeParent = new WordTree(true, parentWord);
                             wordTreeChild = new WordTree(false, childWord);
                             wordTreeParent.addChildrenNode(childWord, wordTreeChild);
-                            wordTreeMap.put(parentWord, wordTreeParent);
                         }
                     }
                     wordTreeParent.setFrequency();
