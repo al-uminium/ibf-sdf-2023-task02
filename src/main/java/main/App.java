@@ -19,7 +19,7 @@ public class App
         // initiating folder
         File folder = null;
         File[] listOfFiles = null;
-        
+
         try {
             folder = new File(args[0]);
             listOfFiles = folder.listFiles();
@@ -40,7 +40,12 @@ public class App
                 for (WordTree wordTree: wordTreeMap.values()) {
                     System.out.println(wordTree.getWord());
                     for (WordTree childWord: wordTree.getChildrenNodes().values()) {
-                        System.out.println("\t" + childWord.getWord() + " " + ((float) childWord.getCount())/wordTree.getFrequency());
+                        // make it print int as shown in the assessment
+                        if (childWord.getCount()%wordTree.getFrequency() == 0) {
+                            System.out.println("\t" + childWord.getWord() + " " + childWord.getCount()/wordTree.getFrequency());
+                        } else {
+                            System.out.println("\t" + childWord.getWord() + " " + ((float) childWord.getCount())/wordTree.getFrequency());
+                        }
                     }
                 }
             }
