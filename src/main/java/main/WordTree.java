@@ -8,14 +8,14 @@ public class WordTree {
   private String word;
   private int count;
   private int frequency;
-  private Map<String, WordTree> childrenNodes;
+  private Map<String, WordTree> childrenNode;
 
   public WordTree(boolean isParent, String word) {
     this.isParent = isParent;
     this.word = word;
     this.count = 1;
     if (this.isParent) {
-      this.childrenNodes = new HashMap<>();
+      this.childrenNode = new HashMap<>();
       this.frequency = 0;
     }
   }
@@ -36,20 +36,20 @@ public class WordTree {
     this.count++;
   }
 
-  public Map<String, WordTree> getChildrenNodes() {
-    return this.childrenNodes;
+  public Map<String, WordTree> getchildrenNode() {
+    return this.childrenNode;
   }
 
   public WordTree getChildrenNode(String word) {
-    return this.childrenNodes.get(word);
+    return this.childrenNode.get(word);
   }
 
-  public void addChildrenNodes(String word, WordTree newWordTree) {
-    this.childrenNodes.put(word, newWordTree);
+  public void addChildrenNode(String word, WordTree newWordTree) {
+    this.childrenNode.put(word, newWordTree);
   }
 
   public boolean containsChildNode (String word) {
-    return this.childrenNodes.containsKey(word);
+    return this.childrenNode.containsKey(word);
   }
 
   public int getFrequency() {
@@ -58,7 +58,7 @@ public class WordTree {
 
   public void setFrequency() {
     int sum = 0;
-    for (WordTree child: childrenNodes.values()) {
+    for (WordTree child: childrenNode.values()) {
       sum += child.getCount();
     }
     this.frequency = sum;
@@ -66,7 +66,7 @@ public class WordTree {
 
   @Override
   public String toString() {
-    return "WordTree [isParent=" + this.isParent + ", word=" + this.word + ", count=" + this.count + ", childrenNodes=" + this.childrenNodes
+    return "WordTree [isParent=" + this.isParent + ", word=" + this.word + ", count=" + this.count + ", childrenNode=" + this.childrenNode
         + "]";
   } 
 }

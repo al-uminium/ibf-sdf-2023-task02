@@ -80,7 +80,7 @@ public class App
                     if (wordTreeMap.isEmpty()) {
                         wordTreeParent = new WordTree(true, parentWord);
                         wordTreeChild = new WordTree(false, childWord);
-                        wordTreeParent.addChildrenNodes(childWord, wordTreeChild);
+                        wordTreeParent.addChildrenNode(childWord, wordTreeChild);
                         wordTreeMap.put(parentWord, wordTreeParent);
                     } else {
                         if (wordTreeMap.containsKey(parentWord)) {
@@ -90,12 +90,12 @@ public class App
                                 wordTreeChild.addCount();
                             } else {
                                 wordTreeChild = new WordTree(false, childWord);
-                                wordTreeParent.addChildrenNodes(childWord, wordTreeChild);
+                                wordTreeParent.addChildrenNode(childWord, wordTreeChild);
                             }
                         } else {
                             wordTreeParent = new WordTree(true, parentWord);
                             wordTreeChild = new WordTree(false, childWord);
-                            wordTreeParent.addChildrenNodes(childWord, wordTreeChild);
+                            wordTreeParent.addChildrenNode(childWord, wordTreeChild);
                             wordTreeMap.put(parentWord, wordTreeParent);
                         }
                     }
