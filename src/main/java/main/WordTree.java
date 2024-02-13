@@ -52,8 +52,6 @@ public class WordTree {
     return this.childrenNodes.containsKey(word);
   }
 
-  
-
   public int getFrequency() {
     return this.frequency;
   }

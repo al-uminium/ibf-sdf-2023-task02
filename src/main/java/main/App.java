@@ -18,9 +18,8 @@ public class App
         // initiating folder
         File folder = null;
         File[] listOfFiles = null;
-        // ArrayList to store WordTree objects and setOfWords to check if word has been stored before.
-
-         try {
+        
+        try {
             folder = new File(args[0]);
             listOfFiles = folder.listFiles();
         } catch (Exception e) {
@@ -78,7 +77,6 @@ public class App
                     String parentWord = wordQueue.remove();
                     String childWord = wordQueue.peek();
 
-                    // if it's empty make the first parent and append. 
                     if (wordTreeMap.isEmpty()) {
                         wordTreeParent = new WordTree(true, parentWord);
                         wordTreeChild = new WordTree(false, childWord);
