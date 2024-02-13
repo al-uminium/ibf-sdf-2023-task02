@@ -1,7 +1,6 @@
 package main;
 
-
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class WordTree {
@@ -16,7 +15,7 @@ public class WordTree {
     this.word = word;
     this.count = 1;
     if (this.isParent) {
-      this.childrenNodes = new HashMap<>();
+      this.childrenNodes = new LinkedHashMap<>();
       this.frequency = 0;
     }
   }
